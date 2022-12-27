@@ -7,7 +7,6 @@ const CartWidget = () => {
             <button className="NumCarro btn btn-light rounded-circle">
                 0
             </button>
-            
         </div>     
     )
 }
