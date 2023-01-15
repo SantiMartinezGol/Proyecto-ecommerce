@@ -1,13 +1,25 @@
+import { NavLink, Link } from 'react-router-dom'
 import CartWidget from '../CartWidget/CartWidget'
 
 const Navbar = () => {
     return (
         <nav  className='Navbar bg-warning bg-gradient pt-4' >
-            <div className='Divv pt-5 pb-4 d-flex justify-content-around'> 
-                <button className=' btn btn-dark px-4'>Todos</button>
-                <button className=' btn btn-dark px-4'>Picantes</button>
-                <button className=' btn btn-dark px-4'>Snaks</button>
-                <button className=' btn btn-dark px-4'>Salsas</button>
+            <Link to='/' className='float-start' >
+                    <img src='../../Images/logo.png' alt='logo' />
+            </Link>
+            <div className='d-flex pt-5 pb-4  justify-content-around align-items-center'>                        
+                <NavLink 
+                    to ={`/categoria/picantes`} 
+                    className={({isActive}) => isActive? 'btn btn-danger px-4':'btn btn-dark px-4'}>Picantes
+                </NavLink>
+                <NavLink 
+                    to ={`/categoria/snacks`} 
+                    className={({isActive}) => isActive? 'btn btn-danger px-4':'btn btn-dark px-4'}>Snacks
+                </NavLink>
+                <NavLink 
+                    to ={`/categoria/salsas`} 
+                    className={({isActive}) => isActive? 'btn btn-danger px-4':'btn btn-dark px-4'}>Salsas
+                </NavLink>
                 <CartWidget />
             </div>
         </nav>
