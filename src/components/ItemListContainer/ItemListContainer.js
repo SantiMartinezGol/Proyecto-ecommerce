@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProducts,getProductsByCategory } from '../asyncMock';
+/*import { getProducts,getProductsByCategory } from '../asyncMock';*/
 import grid from './Grid.svg'
 import list from './List.svg'
 import ItemList from '../ItemList/ItemList';
 import ItemGrid from '../ItemGrid/ItemGrid';
 import Spinner from '../Spinner/Spinner';
+import {getDocs, collection, query, where} from 'firebase/firestore';
+import {db } from '../../services/firebase/firebaseConfig';
 
 const ItemListContainer = ({greeting}) => {
     
@@ -15,22 +17,27 @@ const ItemListContainer = ({greeting}) => {
     const [displayT, setDisplayT] = useState(false); 
     const [iconUrl, setIconUrl] = useState(grid)
     const [tipo, setTipo] = useState('Grid')
+    
+    var {categoryId}= useParams()
 
-    var {categoryId}= useParams();
     if(categoryId){categoryId=categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}    
    
     useEffect(() => {
-        setLoading(true);
-        const asyncFunction = categoryId ? getProductsByCategory : getProducts;
-       
-        asyncFunction(categoryId).then(products =>{
-            setProducts(products)
-            }).catch(error => {
-                setError(true)
-            }).finally(() => {
-                setLoading(false)
-            })
-    }, [categoryId])
+        setLoading(true)
+        const collectionRef =  categoryId
+        ? 
+        query(collection (db, 'ProductData'), where ('categoryId', '==', categoryId))
+        :  collection (db, 'ProductData' )
+        getDocs(collectionRef).then(response => {
+            const productsAdapted = response.docs.map (doc => {
+                const data = doc.data()
+               return {id: doc.id, ...data} }) 
+         setProducts(productsAdapted)
+        }).catch (error => {
+            setError (error)
+        }).finally (() => {
+        setLoading (false)
+        }) },[categoryId])
 
     const handleGrid =()=>{
         setDisplayT(!displayT)
@@ -48,11 +55,11 @@ const ItemListContainer = ({greeting}) => {
         return(
             <div className='ItemListContainer' 
                 style={{paddingLeft:'12%', paddingRight:'12%',margin:'auto'}}>
-                <h1 className='fw-bold text-center mt-5 pb-3'>{greeting}</h1>
+                <h1 className='text-center my-5 pt-4'>{greeting}</h1>
                 <div style={{position:'relative'}}>               
                     <img 
-                        className='d-block text-end position-absolute top-0 end-0'
-                        style={{height:'40px', width:'auto', marginBottom:'150px'}} 
+                        className='d-block position-absolute top-0 end-0'
+                        style={{height:'40px', width:'auto'}} 
                         src={iconUrl}
                         onClick={handleGrid} 
                         alt={tipo}  />

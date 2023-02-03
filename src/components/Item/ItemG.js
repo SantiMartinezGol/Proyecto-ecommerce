@@ -1,14 +1,13 @@
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 const ItemG = (prod) => {
-
-    /* const navigate = useNavigate() */
+const navigate = useNavigate() 
 
   return (
     <div className='m-3  p-4'
       key= {prod.id}
-      /* onClick={() => navigate(`/producto/${prod.id}`)} */
+      onClick={() => navigate(`/producto/${prod.id}`)} 
       style= {{
         cursor:'pointer',
         backgroundColor:'white',
@@ -19,7 +18,7 @@ const ItemG = (prod) => {
           alt={prod.title} 
           style={{width:'100%', margin:'auto'}}
         />
-      </div>
+      </div>       
       <div className='text-start px-3' >
         <h4>{prod.title}</h4>
         <h6>Categoria:  {prod.categoryId}</h6>

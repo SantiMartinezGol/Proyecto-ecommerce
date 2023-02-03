@@ -29,7 +29,7 @@ export const ProductData =[
         categoryId:'Salsas',
         amount: 0
     }, 
-        {
+    {
         id: '4',
         title:'Doritos Picante De Todito',
         description: 'Sabor totalmente nuevo',
@@ -52,7 +52,7 @@ export const ProductData =[
     {
         id: '6',
         title:'Doritos Ketchup',
-        description: 'Un impactante nuevo sabor. Tenes que probar.',
+        description: 'Un impactante nuevo sabor. Tenes que probar',
         price: 365,
         pictureURL: '../../Images/DoritosKetchup.jpg',
         stock: 45,
@@ -138,8 +138,7 @@ export const ProductData =[
         stock: 1,
         categoryId:'Salsas',
         amount: 0
-    },
-    
+    },   
     {
         id: '15',
         title:'Sweet Chili',
@@ -160,7 +159,6 @@ export const ProductData =[
         categoryId:'Salsas',
         amount: 0
     }, 
-  
     {
         id: '17',
         title:'Pulpa de Mango',

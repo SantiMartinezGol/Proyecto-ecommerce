@@ -1,15 +1,15 @@
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 const Item = (prod) => {
 
-    /* const navigate= useNavigate() */
+const navigate= useNavigate()
     
   return (
    
-    <div className='p-3 mb-4'
+    <div className='p-3 mt-5 mb-5'
       key={prod.id} 
-      /* onClick={() => navigate(`/producto/${prod.id}`)} */
+      onClick={() => navigate(`/producto/${prod.id}`)}
       style={{
         cursor:'pointer', 
         backgroundColor:'white',

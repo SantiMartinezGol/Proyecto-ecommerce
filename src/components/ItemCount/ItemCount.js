@@ -18,7 +18,7 @@ const ItemCount = ({stock, onAdd}) => {
     }
 
     if (stock!==0){
-        //Habilita contador con stock positivo
+        //Habilita contador si el stock es stock positivo
         return (
             <div className='d-flex justify-content-center mt-5 px-5 fw-bold' >
                     <button 
@@ -58,11 +58,10 @@ const ItemCount = ({stock, onAdd}) => {
                     </button>
                     <button 
                         type='submit'
-                        className='btn btn-warning fw-bold'
+                        className='btn btn-warning fw-bold px-4'
                         style={{
-                            borderRadius: '5px',
                             color: 'white',
-                            marginLeft: '70px'}}
+                            marginLeft: '50px'}}
                         onClick={()=>onAdd(count)}  
                     >
                         Agregar al carrito
@@ -74,7 +73,7 @@ const ItemCount = ({stock, onAdd}) => {
         return(
             <button 
                 type='button'
-                className="mt-5 px-5 btn btn-warning fw-bold"
+                className="d-block mx-auto mt-5 px-5 btn btn-warning fw-bold"
                 style={{
                     borderRadius: '5px',
                     color: 'white'}}
